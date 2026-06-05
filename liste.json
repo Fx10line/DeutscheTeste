@@ -17,30 +17,42 @@
   },
   {
     "dosyaYolu": "testler/test5.json",
-    "baslik": "xxxxxxxxx"
+    "baslik": "🧬 DIE ORDNUNG DER DINGE"
   },
   {
     "dosyaYolu": "testler/test6.json",
-    "baslik": "xxxxxxxxx"
+    "baslik": "⏰ SCHULE UND BIORHYTHMUS"
   },
   {
     "dosyaYolu": "testler/test7.json",
-    "baslik": "xxxxxxxxx"
+    "baslik": "💰 WIE DAS GELD IN DIE WELT KAM"
   },
   {
     "dosyaYolu": "testler/test8.json",
-    "baslik": "🧸 8. Warum Spielen Kinder schlau macht (C2)"
+    "baslik": "🧸 WARUM SPIELEN KINDER SCHLAU MACHT"
   }
   {
     "dosyaYolu": "testler/test9.json",
-    "baslik": "xxxxxxxxx"
+    "baslik": "💼 Demographieorientierte Personalpolitik"
   },
   {
     "dosyaYolu": "testler/test10.json",
-    "baslik": "xxxxxxxxx"
+    "baslik": "🎮 Lernen wird zum Spiel"
   },
   {
     "dosyaYolu": "testler/test11.json",
-    "baslik": "xxxxxxxxx"
+    "baslik": "🌱 Unterschätzte Pflanzen"
+  },
+  {
+    "dosyaYolu": "testler/test12.json",
+    "baslik": "🍽️ Über die Anfänge der Restaurantkultur"
+  },
+  {
+    "dosyaYolu": "testler/test13.json",
+    "baslik": "💻 Virtuelles Studium: Der Trend des Jahrhunderts"
+  },
+  {
+    "dosyaYolu": "testler/test14.json",
+    "baslik": "son"
   }
 ]
