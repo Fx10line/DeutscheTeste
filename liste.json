@@ -30,7 +30,7 @@
   {
     "dosyaYolu": "testler/test8.json",
     "baslik": "🧸 WARUM SPIELEN KINDER SCHLAU MACHT"
-  }
+  },
   {
     "dosyaYolu": "testler/test9.json",
     "baslik": "💼 Demographieorientierte Personalpolitik"
@@ -43,6 +43,20 @@
     "dosyaYolu": "testler/test11.json",
     "baslik": "🌱 Unterschätzte Pflanzen"
   },
+  {
+    "dosyaYolu": "testler/test12.json",
+    "baslik": "🍽️ Über die Anfänge der Restaurantkultur"
+  },
+  {
+    "dosyaYolu": "testler/test13.json",
+    "baslik": "💻 Virtuelles Studium: Der Trend des Jahrhunderts"
+  },
+  {
+    "dosyaYolu": "testler/test14.json",
+    "baslik": "son"
+  }
+]
+
   {
     "dosyaYolu": "testler/test12.json",
     "baslik": "🍽️ Über die Anfänge der Restaurantkultur"
