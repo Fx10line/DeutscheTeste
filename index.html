@@ -1,1 +1,806 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Almanca C2 - Warum Spielen Kinder schlau macht</title>
+    
+    <style>
+        /* ==========================================================================
+           CSS BÖLÜMÜ BAŞLANGICI: GÖRSELLİK VE TASARIM
+           Bu bölüm sayfanın tüm renk, boyut ve animasyon ayarlarını içerir.
+        ========================================================================== */
+        
+        /* --- TEMA DEĞİŞKENLERİ BAŞLANGICI --- */
+        /* Renkleri tek bir yerden yönetmek için kullanılır */
+        :root {
+            --bg-color: #eef2f7;
+            --text-color: #1a2c3e;
+            --container-bg: #ffffff;
+            --primary-color: #2c7da0;
+            --primary-hover: #1f6392;
+            --border-color: #e2e8f0;
+            --empty-bg: #fef7e0;
+            --empty-border: #f1c40f;
+            --empty-text: #b45f06;
+            --popup-bg: #ffffff;
+            --popup-hover: #f8fafc;
+            --durum-bg: #f0f4fa;
+            --card-shadow: rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --container-bg: #1e293b;
+            --primary-color: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --border-color: #334155;
+            --empty-bg: #334155;
+            --empty-border: #f59e0b;
+            --empty-text: #fcd34d;
+            --popup-bg: #1e293b;
+            --popup-hover: #334155;
+            --durum-bg: #0f172a;
+            --card-shadow: rgba(0,0,0,0.5);
+        }
+        /* --- TEMA DEĞİŞKENLERİ BİTİŞİ --- */
+
+        /* --- GENEL SAYFA TASARIMI BAŞLANGICI --- */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-color);
+            margin: 0;
+            padding: 15px 10px;
+            color: var(--text-color);
+            line-height: 1.5;
+            transition: background 0.3s, color 0.3s;
+        }
+        /* --- GENEL SAYFA TASARIMI BİTİŞİ --- */
+
+        /* --- ÜST BUTONLAR VE ANA KONTEYNER BAŞLANGICI --- */
+        .ust-kontroller {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .ikon-btn {
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px var(--card-shadow);
+            transition: transform 0.2s;
+            padding: 0;
+            min-height: auto;
+        }
+        .ikon-btn:hover { transform: scale(1.1); }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px var(--card-shadow);
+            padding: 20px 15px;
+            position: relative;
+            transition: background 0.3s;
+        }
+        h1 {
+            font-size: 1.4rem;
+            margin-top: 0;
+            color: var(--primary-hover);
+            text-align: center;
+        }
+        /* --- ÜST BUTONLAR VE ANA KONTEYNER BİTİŞİ --- */
+
+        /* --- İLERLEME ÇUBUĞU BAŞLANGICI --- */
+        .progress-container {
+            background: var(--border-color);
+            border-radius: 30px;
+            height: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: var(--primary-color);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.3s ease;
+        }
+        /* --- İLERLEME ÇUBUĞU BİTİŞİ --- */
+
+        /* --- METİN VE BOŞLUK KUTULARI BAŞLANGICI --- */
+        .metin-kutusu { position: relative; }
+        .metin {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            text-align: justify;
+            padding: 15px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: transparent;
+        }
+        .metin p { margin: 0 0 1rem 0; }
+        
+        .bosluk {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            min-height: 32px;
+            background: var(--empty-bg);
+            border: 2px dashed var(--empty-border);
+            border-radius: 8px;
+            padding: 2px 10px;
+            margin: 0 4px;
+            font-weight: 600;
+            color: var(--empty-text);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            vertical-align: middle;
+            outline: none;
+        }
+        .bosluk:focus-visible { box-shadow: 0 0 0 3px var(--primary-color); }
+        .bosluk.aktif {
+            border-style: solid;
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+            transform: scale(1.05);
+        }
+        .bosluk.cevaplanmis-dogru {
+            background: #c8e6d9 !important;
+            border-color: #2e7d64 !important;
+            color: #1e5631 !important;
+            border-style: solid;
+        }
+        .bosluk.cevaplanmis-yanlis {
+            background: #ffe0db !important;
+            border-color: #c7362b !important;
+            color: #9b2e1f !important;
+            border-style: solid;
+        }
+        /* --- METİN VE BOŞLUK KUTULARI BİTİŞİ --- */
+
+        /* --- ANİMASYONLAR BAŞLANGICI --- */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(46, 125, 100, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 125, 100, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 125, 100, 0); }
+        }
+        .pulse-green { animation: pulse-green 0.6s ease-out; }
+        /* --- ANİMASYONLAR BİTİŞİ --- */
+        
+        /* --- ALT DURUM PANELİ VE BUTONLAR BAŞLANGICI --- */
+        .durum {
+            margin-top: 15px; background: var(--durum-bg); border-radius: 15px; padding: 12px; display: flex; flex-direction: column; gap: 10px;
+        }
+        .durum-ust { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+        .puan, .seviye, .zaman {
+            font-weight: bold; padding: 8px 12px; border-radius: 20px; font-size: 0.9rem; flex: 1; text-align: center; color: white;
+        }
+        .puan { background: #2c7da0; }
+        .seviye { background: #f4a261; }
+        .zaman { background: #64748b; min-width: 100px; }
+        
+        .mesaj {
+            background: var(--container-bg); padding: 12px; border-radius: 10px; font-size: 0.95rem; border-left: 4px solid var(--primary-color); font-weight: 500;
+        }
+        
+        button {
+            background: var(--primary-color); border: none; color: white; padding: 12px 16px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: background 0.2s, transform 0.1s; min-height: 44px;
+        }
+        button:active { transform: scale(0.98); }
+        button:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; color: #64748b; }
+        .buton-grubu { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .buton-grubu button { flex: 1 1 calc(33% - 10px); min-width: 100px; }
+        #sifirlaBtn { background: #ef4444; }
+        /* --- ALT DURUM PANELİ VE BUTONLAR BİTİŞİ --- */
+
+        /* --- SATIR İÇİ AÇILIR KUTU (POPUP) BAŞLANGICI --- */
+        .inline-popup {
+            display: none; position: absolute; background: var(--popup-bg); border-radius: 16px; padding: 12px; width: 290px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 0 1px var(--border-color); z-index: 1000; animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .inline-popup::before {
+            content: ''; position: absolute; top: -6px; left: 20px; width: 12px; height: 12px; background: var(--popup-bg); transform: rotate(45deg); border-left: 1px solid var(--border-color); border-top: 1px solid var(--border-color);
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .popup-baslik { font-size: 0.85rem; color: #64748b; margin-bottom: 10px; font-weight: 600; text-align: center; }
+        .secenek-btn {
+            display: block; width: 100%; text-align: left; background: var(--popup-hover); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; font-size: 0.95rem; min-height: auto; transition: all 0.1s;
+        }
+        .secenek-btn:hover { border-color: var(--primary-color); }
+        
+        .kapat-btn { display: block; width: 100%; background: transparent; color: #ef4444; border: none; padding: 8px; margin-top: 8px; font-size: 0.85rem; border-top: 1px solid var(--border-color); border-radius: 0 0 10px 10px; }
+        /* --- SATIR İÇİ AÇILIR KUTU (POPUP) BİTİŞİ --- */
+
+        /* --- SABİT EKRANLAR (MODALLAR) BAŞLANGICI --- */
+        .rapor-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(3px); padding: 15px; }
+        .rapor-card { background: var(--container-bg); width: 100%; max-width: 600px; border-radius: 20px; padding: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; color: var(--text-color); }
+        .yanlis-tablo { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .yanlis-tablo th, .yanlis-tablo td { border: 1px solid var(--border-color); padding: 10px; text-align: left; }
+        .yanlis-tablo th { background: var(--durum-bg); }
+        footer { margin-top: 20px; text-align: center; font-size: 0.8rem; color: #64748b; }
+        /* --- SABİT EKRANLAR (MODALLAR) BİTİŞİ --- */
+        
+        /* ==========================================================================
+           CSS BÖLÜMÜ BİTİŞİ
+        ========================================================================== */
+    </style>
+</head>
+<body>
+
+<!-- ==========================================================================
+     HTML BÖLÜMÜ BAŞLANGICI: SAYFA İSKELETİ VE İÇERİK
+========================================================================== -->
+<div class="container" id="anaKonteyner">
+    
+    <!-- Üst İkon Butonları -->
+    <div class="ust-kontroller">
+        <button id="sesBtn" class="ikon-btn" title="Sesi Aç/Kapat">🔊</button>
+        <button id="temaBtn" class="ikon-btn" title="Karanlık/Aydınlık Tema">🌙</button>
+    </div>
+
+    <h1>🧸 WARUM SPIELEN KINDER SCHLAU MACHT</h1>
+    
+    <!-- İlerleme Çubuğu -->
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+    
+    <!-- Metin ve Soruların Çıktığı Alan -->
+    <div class="metin-kutusu">
+        <div class="metin" id="metinAlani"></div>
+        
+        <!-- Boşluğa Tıklanınca Açılan Küçük Seçenek Kutusu -->
+        <div id="inlinePopup" class="inline-popup">
+            <div class="popup-baslik" id="popupBaslik">Soru ?</div>
+            <div id="popupSecenekler"></div>
+            <button class="kapat-btn" onclick="popupKapat()">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Puan, Seviye, Süre ve Mesaj Göstergeleri -->
+    <div class="durum">
+        <div class="durum-ust">
+            <div class="puan" id="puanGoster">📊 Doğru: 0 / 22</div>
+            <div class="seviye" id="seviyeGoster">Seviye: -</div>
+            <div class="zaman" id="zamanGoster">⏱️ 00:00</div>
+        </div>
+        <div class="mesaj" id="sonMesaj">✅ Bir boşluğa tıklayın (Klavye ile Tab/Enter kullanabilirsiniz)</div>
+    </div>
+    
+    <!-- Alt Kontrol Butonları -->
+    <div class="buton-grubu">
+        <button id="tumCevaplariGosterBtn">📋 Cevaplar</button>
+        <button id="raporIndirBtn" disabled>📎 Rapor İndir</button>
+        <button id="sifirlaBtn">🔄 Sıfırla</button>
+    </div>
+    <footer>Boşluklara tıklayın, şıkkı klavye (A,B,C,D) veya fare ile seçin. Otomatik kayıt aktiftir.</footer>
+</div>
+
+<!-- Rapor ve Uyarı Pencereleri (Modallar) -->
+<div id="yanlisModal" class="rapor-modal"><div class="rapor-card"><h3 style="margin-top:0; color:#ef4444;">❌ Yanlış Yapılan Sorular</h3><div id="yanlisListesiDiv"></div><button id="yanlisModalKapat" style="margin-top:15px; width:100%;">Kapat</button></div></div>
+<div id="cevaplarModal" class="rapor-modal"><div class="rapor-card"><h3 style="margin-top:0; color:var(--primary-color);">📌 Tüm Cevaplar</h3><div id="tumCevaplarDiv"></div><button id="cevaplarModalKapat" style="margin-top:15px; width:100%;">Kapat</button></div></div>
+
+<!-- İSİM VE ZAMAN DAMGALI RAPOR PENCERESİ (YENİ EKLENDİ) -->
+<div id="isimModal" class="rapor-modal">
+    <div class="rapor-card" style="max-width: 400px; text-align: center;">
+        <h3 style="margin-top:0; color:var(--primary-color);">📝 Rapor Bilgileri</h3>
+        <p style="font-size: 0.9rem; color: #64748b;">Raporunuza isminizi eklemek ister misiniz? (Zorunlu değildir)</p>
+        <input type="text" id="kullaniciIsim" placeholder="Adınız Soyadınız" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 15px; font-size: 1rem; background: var(--durum-bg); color: var(--text-color);">
+        <div style="display: flex; gap: 10px;">
+            <button id="isimleIndirBtn" style="flex: 1;">Kaydet ve İndir</button>
+            <button id="isimsizIndirBtn" style="flex: 1; background: #94a3b8;">Boş Geç</button>
+        </div>
+        <button id="isimModalKapat" class="kapat-btn" style="margin-top:10px;">İptal</button>
+    </div>
+</div>
+<!-- ==========================================================================
+     HTML BÖLÜMÜ BİTİŞİ
+========================================================================== -->
+
+
+<script>
+    // ==========================================================================
+    // JAVASCRIPT BÖLÜMÜ BAŞLANGICI: MANTIK VE İŞLEVLER
+    // Sayfanın tüm çalışabilirlik ayarları buradadır.
+    // ==========================================================================
+
+    // --------------------------------------------------------------------------
+    // BÖLÜM 1: AYARLAR VE VERİLER (Metin ve Sorular)
+    // Ne işe yarar: Test edilecek metni, boşlukları ve şıkları tanımlar.
+    // Yeni bir test yapacağında SADECE bu bölümü değiştirmen yeterlidir.
+    // --------------------------------------------------------------------------
+    const TEST_ID = "C2_Spielen_v2"; // LocalStorage için benzersiz kimlik.
+    
+    const metinHTML = `
+        <p>Es ist <span class="bosluk" tabindex="0" data-nummer="0">_____</span> neandertalerisches, was einfach so passiert. Jeder Mensch macht es, wenn er auf die Welt kommt, er kann nicht <span class="bosluk" tabindex="0" data-nummer="25">_____</span>: Er fängt an zu spielen. Auch wenn es nicht immer <span class="bosluk" tabindex="0" data-nummer="26">_____</span> aussieht. Mit den Beinen zu strampeln, nach einem Gegenstand zu greifen, Geräusche zu fabrizieren, all das sind Spiele, die dazu dienen, dass ein Kind sich ausprobiert, seine Welt entdeckt und lernt, darin <span class="bosluk" tabindex="0" data-nummer="27">_____</span>.</p>
+        <p>Wenn ein Kind <span class="bosluk" tabindex="0" data-nummer="28">_____</span> seinen Löffel aus dem Hochstuhl fallen <span class="bosluk" tabindex="0" data-nummer="29">_____</span>, macht es das nicht, um die Eltern zu ärgern, sondern um Dinge herauszufinden und diese abzuspeichern: Kann man den <span class="bosluk" tabindex="0" data-nummer="30">_____</span> hören? Wie lange dauert es, bis man ihn hört? Oder geht der Gegenstand sogar dabei kaputt?</p>
+        <p>Trotzdem halten viele Erwachsene Spielen für etwas, was Kinder zum <span class="bosluk" tabindex="0" data-nummer="31">_____</span> machen, was aber wenig produktiv ist. Dabei ist Spielen in jedem Alter die Grundlage von allem, was man für den Rest <span class="bosluk" tabindex="0" data-nummer="32">_____</span> Lebens braucht. Menschenkinder müssen, wie übrigens auch Tiere, durch eigene Erfahrungen lernen. Sie beobachten und probieren <span class="bosluk" tabindex="0" data-nummer="33">_____</span>, wie man sich Nahrung sucht, wie man sich vor Gefahren schützt und wie man in der Gemeinschaft lebt. Die Struktur des Gehirns wird während der Kindheit dadurch geformt, <span class="bosluk" tabindex="0" data-nummer="34">_____</span> es Dinge bewältigt und Erfahrungen sammelt. Nebenbei wird auch das Selbstvertrauen <span class="bosluk" tabindex="0" data-nummer="35">_____</span>.</p>
+        <p>Um fit fürs Leben zu werden, <span class="bosluk" tabindex="0" data-nummer="36">_____</span> es also Freiräume, in denen Kinder sich selbst ausprobieren können. Beides ist wichtig: einerseits allein zu spielen, denn das <span class="bosluk" tabindex="0" data-nummer="37">_____</span> Konzentration und Kreativität. Aber andererseits auch das Spielen mit anderen Kindern, die <span class="bosluk" tabindex="0" data-nummer="38">_____</span> auch älter sein dürfen, denn dann kann man sich <span class="bosluk" tabindex="0" data-nummer="39">_____</span> etwas abschauen. Auch Rollenspiele sind wichtig für die Entwicklung, sind sie <span class="bosluk" tabindex="0" data-nummer="40">_____</span> ein soziales und emotionales Training. <span class="bosluk" tabindex="0" data-nummer="41">_____</span> die Rolle eines anderen zu schlüpfen bedeutet vor allem, sich <span class="bosluk" tabindex="0" data-nummer="42">_____</span> in eine andere Stimmung zu versetzen. So kann man Angst, Trauer und Wut besser verarbeiten und <span class="bosluk" tabindex="0" data-nummer="43">_____</span> gleichzeitig Einfühlungsvermögen für andere.</p>
+        <p>Da das alles wichtig ist, steht das Recht <span class="bosluk" tabindex="0" data-nummer="44">_____</span> Spielen auch im Artikel 31 Absatz 1 der UN-Kinderrechtskonvention. Eltern, die trotzdem noch <span class="bosluk" tabindex="0" data-nummer="45">_____</span> sind, sollten die Sache so sehen: Spielen ist die Arbeit der Kinder. Und jede Arbeit muss <span class="bosluk" tabindex="0" data-nummer="46">_____</span> werden.</p>
+    `;
+
+    const soruVerileri = {
+        0:  { secenekler: ["A) ein bisschen", "B) etwas", "C) geringfügig", "D) wenig"], dogru: "B", aciklama: "📘 Örnek Soru" },
+        25: { secenekler: ["A) anders", "B) andere", "C) anderen", "D) anderes"], dogru: "A", aciklama: "📘 'nicht anders können' → elinden başka bir şey gelmemek." },
+        26: { secenekler: ["A) dazu", "B) dafür", "C) dagegen", "D) danach"], dogru: "B", aciklama: "📘 'dafür aussehen' → öyle/ona uygun görünmek." },
+        27: { secenekler: ["A) zurechtzumachen", "B) zurechtzufinden", "C) zurechtzukommen", "D) zurechtzulegen"], dogru: "B", aciklama: "📘 'sich zurechtfinden' → yönünü/yolunu bulmak, uyum sağlamak." },
+        28: { secenekler: ["A) fünfmal", "B) fünf Mahl", "C) fünf mal", "D) fünfmahl"], dogru: "A", aciklama: "📘 'fünfmal' → beş kez (Doğru birleşik yazım)." },
+        29: { secenekler: ["A) ließ", "B) lässt", "C) lasse", "D) lassen"], dogru: "B", aciklama: "📘 'fallen lassen' kalıbının Präsens 3. tekil şahıs çekimi: 'lässt'." },
+        30: { secenekler: ["A) Stoß", "B) Aufprall", "C) Druck", "D) Schlag"], dogru: "B", aciklama: "📘 'der Aufprall' → yere çarpma/düşme anı ve sesi." },
+        31: { secenekler: ["A) Zeitvertreib", "B) Zeitmaß", "C) Zeitpunkt", "D) Zeitverlust"], dogru: "A", aciklama: "📘 'zum Zeitvertreib' → vakit geçirmek/oyalanmak için." },
+        32: { secenekler: ["A) unseres", "B) deines", "C) ihres", "D) seines"], dogru: "D", aciklama: "📘 Genitiv tamlama: 'für den Rest seines Lebens' (hayatının geri kalanı)." },
+        33: { secenekler: ["A) mit", "B) an", "C) aus", "D) durch"], dogru: "C", aciklama: "📘 'ausprobieren' → deneyerek öğrenmek, tecrübe etmek." },
+        34: { secenekler: ["A) weil", "B) damit", "C) dass", "D) sodass"], dogru: "C", aciklama: "📘 'dadurch, dass' → -mesi vasıtasıyla, yaparak." },
+        35: { secenekler: ["A) gekräftigt", "B) befestigt", "C) bekräftigt", "D) gefestigt"], dogru: "D", aciklama: "📘 'Selbstvertrauen gefestigt' → Özgüvenin sağlamlaşması/pekişmesi." },
+        36: { secenekler: ["A) brauchte", "B) bräuchten", "C) brauchen", "D) braucht"], dogru: "D", aciklama: "📘 'es braucht' → ... gerekir / ihtiyaç vardır." },
+        37: { secenekler: ["A) transportiert", "B) bevorzugt", "C) fördert", "D) gewährt"], dogru: "C", aciklama: "📘 'fördern' → teşvik etmek, desteklemek, geliştirmek." },
+        38: { secenekler: ["A) stumm", "B) leise", "C) ruhig", "D) still"], dogru: "C", aciklama: "📘 'ruhig' → burada 'pekala/rahatlıkla' anlamında pekiştirmedir." },
+        39: { secenekler: ["A) uns", "B) dir", "C) ihm", "D) sich"], dogru: "D", aciklama: "📘 'sich etwas abschauen' → birinden görerek/izleyerek öğrenmek." },
+        40: { secenekler: ["A) sonst", "B) aber", "C) allerdings", "D) doch"], dogru: "B", aciklama: "📘 Cümle ortasında 'sind sie aber...' vurguyu artırır." },
+        41: { secenekler: ["A) Zwischen", "B) An", "C) In", "D) Unter"], dogru: "C", aciklama: "📘 'In eine Rolle schlüpfen' → bir role bürünmek/girmek." },
+        42: { secenekler: ["A) gefüllsmässig", "B) Gefühls mäßig", "C) Gefühlsmäßig", "D) gefühlsmäßig"], dogru: "D", aciklama: "📘 'gefühlsmäßig' → duygusal olarak (Doğru küçük ve birleşik yazım)." },
+        43: { secenekler: ["A) entwickelten", "B) entwickeln", "C) entwickelt", "D) entwickelte"], dogru: "C", aciklama: "📘 Özne tekil (Kind) olduğu için Präsens çekimi: 'entwickelt'." },
+        44: { secenekler: ["A) zu", "B) am", "C) für", "D) mit"], dogru: "A", aciklama: "📘 'das Recht zu spielen' → oynama/oyun hakkı." },
+        45: { secenekler: ["A) skeptisch", "B) sceptisch", "C) skepptisch", "D) skeptich"], dogru: "A", aciklama: "📘 'skeptisch' → şüpheci, kuşkulu (Doğru C2 imla yazımı)." },
+        46: { secenekler: ["A) sanktioniert", "B) integriert", "C) kopiert", "D) respektiert"], dogru: "D", aciklama: "📘 'respektiert werden' → saygı duyulmak, gözetilmek." }
+    };
+
+    // --------------------------------------------------------------------------
+    // BÖLÜM 2: UYGULAMA DEĞİŞKENLERİ VE İLK KURULUM
+    // Ne işe yarar: Sayfa açıldığında verileri HTML'e yerleştirir, sayaçları sıfırlar.
+    // --------------------------------------------------------------------------
+    let cevaplar = {};
+    const toplamSoru = Object.keys(soruVerileri).length - 1; 
+    let acikBoslukElementi = null;
+    let aktifSoruNumarasi = null;
+
+    const popup = document.getElementById('inlinePopup');
+    const popupSecenekler = document.getElementById('popupSecenekler');
+    document.getElementById("metinAlani").innerHTML = metinHTML;
+
+    // Örnek boşluk kilitleniyor (Sıfırıncı Soru)
+    const ornekBosluk = document.querySelector('.bosluk[data-nummer="0"]');
+    if (ornekBosluk) {
+        ornekBosluk.innerHTML = "etwas";
+        ornekBosluk.style.background = "var(--border-color)";
+        ornekBosluk.style.borderColor = "var(--text-color)";
+        ornekBosluk.style.color = "var(--text-color)";
+        ornekBosluk.style.pointerEvents = "none";
+        ornekBosluk.removeAttribute("tabindex");
+    }
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: TEMA YÖNETİMİ
+    // Ne işe yarar: Gece/Gündüz modunu değiştirir ve kullanıcının tercihini kaydeder.
+    // --------------------------------------------------------------------------
+    const temaBtn = document.getElementById('temaBtn');
+    function setTema(dark) {
+        if(dark) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            temaBtn.innerHTML = "☀️";
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            temaBtn.innerHTML = "🌙";
+        }
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+    temaBtn.addEventListener('click', () => {
+        setTema(document.documentElement.getAttribute('data-theme') !== 'dark');
+    });
+    // --- TEMA YÖNETİMİ BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: SES SİSTEMİ
+    // Ne işe yarar: Doğru/Yanlış cevaplarda tarayıcı üzerinden ses efektleri üretir.
+    // --------------------------------------------------------------------------
+    let soundEnabled = true;
+    let audioCtx = null;
+    
+    const sesBtn = document.getElementById('sesBtn');
+    sesBtn.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        sesBtn.innerHTML = soundEnabled ? "🔊" : "🔇";
+        sesBtn.style.opacity = soundEnabled ? "1" : "0.5";
+        localStorage.setItem('sound', soundEnabled ? 'on' : 'off');
+    });
+
+    function playSound(type) {
+        if (!soundEnabled) return;
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        if (type === 'correct') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime); 
+            osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05); 
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.05);
+        } else if (type === 'wrong') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+    }
+    // --- SES SİSTEMİ BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: ZAMANLAYICI (KRONOMETRE)
+    // Ne işe yarar: Test çözülmeye başlandığı an süreyi sayar ve ekranda gösterir.
+    // --------------------------------------------------------------------------
+    let timerInterval = null;
+    let saniyeGeçti = 0;
+    let timerBasladi = false;
+
+    function zamanlayiciGuncelle() {
+        let dk = Math.floor(saniyeGeçti / 60);
+        let sn = saniyeGeçti % 60;
+        document.getElementById('zamanGoster').innerText = `⏱️ ${dk.toString().padStart(2, '0')}:${sn.toString().padStart(2, '0')}`;
+    }
+    function timerBaslat() {
+        if (!timerBasladi) {
+            timerBasladi = true;
+            timerInterval = setInterval(() => {
+                saniyeGeçti++;
+                zamanlayiciGuncelle();
+                verileriKaydet(); 
+            }, 1000);
+        }
+    }
+    function timerDurdur() { clearInterval(timerInterval); }
+    // --- ZAMANLAYICI BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: YEREL KAYIT (LOCAL STORAGE)
+    // Ne işe yarar: Kullanıcının cevaplarını, süresini ve ayarlarını tarayıcıya kaydeder,
+    // sayfa yenilendiğinde tekrar geri yükler.
+    // --------------------------------------------------------------------------
+    function verileriKaydet() {
+        const kayitData = { cevaplar, saniyeGeçti };
+        localStorage.setItem(TEST_ID, JSON.stringify(kayitData));
+    }
+    function verileriYukle() {
+        if(localStorage.getItem('theme') === 'dark') setTema(true);
+        if(localStorage.getItem('sound') === 'off') sesBtn.click();
+
+        const kayit = localStorage.getItem(TEST_ID);
+        if (kayit) {
+            const data = JSON.parse(kayit);
+            cevaplar = data.cevaplar || {};
+            saniyeGeçti = data.saniyeGeçti || 0;
+            zamanlayiciGuncelle();
+            if(Object.keys(cevaplar).length > 0) timerBaslat(); 
+            
+            document.querySelectorAll('.bosluk').forEach(span => {
+                const num = parseInt(span.getAttribute('data-nummer'));
+                if (cevaplar[num]) {
+                    span.innerHTML = cevaplar[num].secilenMetin.substring(3);
+                    span.className = `bosluk ${cevaplar[num].dogruMu ? 'cevaplanmis-dogru' : 'cevaplanmis-yanlis'}`;
+                }
+            });
+        }
+    }
+    // --- YEREL KAYIT BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: ARAYÜZ GÜNCELLEME (PUAN VE DURUM)
+    // Ne işe yarar: Doğru sayısını, ilerleme çubuğunu ve seviyeyi hesaplayıp ekrana basar.
+    // --------------------------------------------------------------------------
+    function guncelleDurum() {
+        const cevaplanan = Object.keys(cevaplar).filter(k => k != 0).length;
+        document.getElementById('progressBar').style.width = (cevaplanan / toplamSoru) * 100 + '%';
+
+        let dogru = 0;
+        for (let id in cevaplar) if (id != 0 && cevaplar[id].dogruMu) dogru++;
+
+        let seviye = "📖 Pratik Lazım";
+        if (dogru === toplamSoru) seviye = "🎉 Mükemmel (C2)";
+        else if (dogru >= 20) seviye = "🌟 Sehr gut (C2)";
+        else if (dogru >= 15) seviye = "📘 Gut (C1)";
+        else if (dogru >= 11) seviye = "👍 Befriedigend (B2)";
+
+        document.getElementById('puanGoster').innerHTML = `📊 Doğru: ${dogru} / ${toplamSoru}`;
+        document.getElementById('seviyeGoster').innerHTML = `🏅 ${seviye}`;
+        
+        const bitis = (cevaplanan === toplamSoru);
+        document.getElementById('raporIndirBtn').disabled = !bitis;
+        if(bitis) {
+            timerDurdur();
+            setTimeout(yanlisListesiniGoster, 800);
+        }
+    }
+    // --- ARAYÜZ GÜNCELLEME BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: POPUP (SORU KUTUSU) KONTROLLERİ
+    // Ne işe yarar: Seçenekler penceresini açar, kapatır ve konumu ayarlar.
+    // --------------------------------------------------------------------------
+    function popupKapat() {
+        popup.style.display = 'none';
+        if (acikBoslukElementi) {
+            acikBoslukElementi.classList.remove('aktif');
+            acikBoslukElementi.focus(); 
+        }
+        acikBoslukElementi = null;
+        aktifSoruNumarasi = null;
+    }
+
+    function popupAc(span) {
+        timerBaslat(); 
+        if (acikBoslukElementi === span) { popupKapat(); return; }
+        if (acikBoslukElementi) acikBoslukElementi.classList.remove('aktif');
+        
+        acikBoslukElementi = span;
+        span.classList.add('aktif');
+        
+        aktifSoruNumarasi = parseInt(span.getAttribute('data-nummer'));
+        const veri = soruVerileri[aktifSoruNumarasi];
+        
+        document.getElementById('popupBaslik').innerText = `Soru ${aktifSoruNumarasi} için seçin:`;
+        popupSecenekler.innerHTML = '';
+
+        const harfler = ["A", "B", "C", "D"];
+        veri.secenekler.forEach((sec, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'secenek-btn';
+            btn.innerHTML = `<b>${harfler[idx]})</b> ${sec.substring(3)}`;
+            
+            if(cevaplar[aktifSoruNumarasi] && cevaplar[aktifSoruNumarasi].secilenHarf === harfler[idx]) {
+                btn.style.borderColor = "var(--primary-color)";
+                btn.style.background = "var(--durum-bg)";
+            }
+            
+            btn.addEventListener('click', () => cevapVer(aktifSoruNumarasi, harfler[idx], sec));
+            popupSecenekler.appendChild(btn);
+        });
+
+        popup.style.display = 'block';
+        
+        const metinKutusu = document.querySelector('.metin-kutusu');
+        const mkRect = metinKutusu.getBoundingClientRect();
+        const spanRect = span.getBoundingClientRect();
+        
+        let top = (spanRect.bottom - mkRect.top) + 10; 
+        let left = (spanRect.left - mkRect.left) - 20; 
+        if (left + 290 > mkRect.width) left = mkRect.width - 300;
+        if (left < 0) left = 10;
+
+        popup.style.top = top + 'px';
+        popup.style.left = left + 'px';
+    }
+    // --- POPUP KONTROLLERİ BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: CEVAP VERME VE DEĞERLENDİRME
+    // Ne işe yarar: Kullanıcı bir şıkka tıkladığında doğruluğunu kontrol eder, 
+    // rengi değiştirir ve sesi çalar.
+    // --------------------------------------------------------------------------
+    function cevapVer(numara, secilenHarf, secilenMetin) {
+        const veri = soruVerileri[numara];
+        const dogruMu = (secilenHarf === veri.dogru);
+        
+        cevaplar[numara] = { secilenHarf, dogruMu, secilenMetin };
+        verileriKaydet();
+        
+        acikBoslukElementi.innerHTML = secilenMetin.substring(3);
+        acikBoslukElementi.className = `bosluk ${dogruMu ? 'cevaplanmis-dogru' : 'cevaplanmis-yanlis'}`;
+        
+        acikBoslukElementi.classList.remove('shake', 'pulse-green'); 
+        void acikBoslukElementi.offsetWidth; 
+        
+        if (dogruMu) {
+            playSound('correct');
+            acikBoslukElementi.classList.add('pulse-green');
+        } else {
+            playSound('wrong');
+            acikBoslukElementi.classList.add('shake');
+        }
+
+        const mesajDiv = document.getElementById('sonMesaj');
+        mesajDiv.innerHTML = dogruMu 
+            ? `✅ <b>Soru ${numara}:</b> Doğru! ${veri.aciklama}` 
+            : `❌ <b>Soru ${numara}:</b> Yanlış. Doğru cevap: ${veri.dogru}. ${veri.aciklama}`;
+        
+        popupKapat();
+        guncelleDurum();
+    }
+    // --- CEVAP VERME BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: FARE VE KLAVYE DİNLEYİCİLERİ (EVENTS)
+    // Ne işe yarar: Kullanıcının tıklamalarını veya klavye tuşlarını algılar.
+    // --------------------------------------------------------------------------
+    document.getElementById('metinAlani').addEventListener('click', (e) => {
+        const span = e.target.closest('.bosluk');
+        if (span && parseInt(span.getAttribute('data-nummer')) !== 0) popupAc(span);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.inline-popup') && !e.target.closest('.bosluk')) popupKapat();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (document.activeElement.classList.contains('bosluk')) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if(parseInt(document.activeElement.getAttribute('data-nummer')) !== 0) {
+                    popupAc(document.activeElement);
+                }
+            }
+        }
+        
+        if (aktifSoruNumarasi !== null && popup.style.display === 'block') {
+            const keyMap = { 'a':0, 'A':0, '1':0, 'b':1, 'B':1, '2':1, 'c':2, 'C':2, '3':2, 'd':3, 'D':3, '4':3 };
+            if (keyMap[e.key] !== undefined) {
+                e.preventDefault();
+                const harfler = ["A", "B", "C", "D"];
+                const idx = keyMap[e.key];
+                const harf = harfler[idx];
+                const metin = soruVerileri[aktifSoruNumarasi].secenekler[idx];
+                cevapVer(aktifSoruNumarasi, harf, metin);
+            }
+            if (e.key === 'Escape') popupKapat();
+        }
+    });
+    // --- FARE VE KLAVYE DİNLEYİCİLERİ BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: TABLO VE MODAL EKRANLARI (Yanlışlar ve Tüm Cevaplar)
+    // Ne işe yarar: Test bittiğinde yanlışları veya genel cevapları liste halinde gösterir.
+    // --------------------------------------------------------------------------
+    function yanlisListesiniGoster() {
+        let html = '<table class="yanlis-tablo"><tr><th>No</th><th>Siz</th><th>Doğru</th></tr>';
+        let hataVar = false;
+        for (let num in soruVerileri) {
+            if (num == 0) continue;
+            const cevap = cevaplar[num];
+            if (!cevap || !cevap.dogruMu) {
+                hataVar = true;
+                const dMetin = soruVerileri[num].secenekler.find(s => s.startsWith(soruVerileri[num].dogru));
+                html += `<tr><td><b>${num}</b></td><td style="color:#ef4444;">${cevap ? cevap.secilenHarf : '-'}</td><td style="color:#2e7d64;">${dMetin}</td></tr>`;
+            }
+        }
+        html += '</table>';
+        document.getElementById('yanlisListesiDiv').innerHTML = hataVar ? html : "<p align='center'>🎉 Süper! Hiç yanlış yok.</p>";
+        document.getElementById('yanlisModal').style.display = 'flex';
+    }
+
+    function tumCevaplariGoster() {
+        let html = '<table class="yanlis-tablo"><tr><th>No</th><th>Seçiminiz</th><th>Durum</th></tr>';
+        for (let num in soruVerileri) {
+            if (num == 0) continue;
+            const cevap = cevaplar[num];
+            html += `<tr><td><b>${num}</b></td><td>${cevap ? cevap.secilenMetin.substring(3) : "—"}</td><td>${cevap ? (cevap.dogruMu ? "✅" : "❌") : "⏳"}</td></tr>`;
+        }
+        html += '</table>';
+        document.getElementById('tumCevaplarDiv').innerHTML = html;
+        document.getElementById('cevaplarModal').style.display = 'flex';
+    }
+    
+    document.getElementById('tumCevaplariGosterBtn').addEventListener('click', tumCevaplariGoster);
+    document.getElementById('yanlisModalKapat').addEventListener('click', () => document.getElementById('yanlisModal').style.display = 'none');
+    document.getElementById('cevaplarModalKapat').addEventListener('click', () => document.getElementById('cevaplarModal').style.display = 'none');
+    // --- TABLO VE MODAL EKRANLARI BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: RAPOR İNDİRME SİSTEMİ (İsim ve Zaman Damgalı)
+    // Ne işe yarar: Test sonucunu bir metin dosyası (.txt) halinde cihaza indirir.
+    // --------------------------------------------------------------------------
+    document.getElementById('raporIndirBtn').addEventListener('click', () => {
+        document.getElementById('kullaniciIsim').value = ''; 
+        document.getElementById('isimModal').style.display = 'flex';
+    });
+
+    document.getElementById('isimModalKapat').addEventListener('click', () => {
+        document.getElementById('isimModal').style.display = 'none';
+    });
+
+    document.getElementById('isimleIndirBtn').addEventListener('click', () => {
+        const isim = document.getElementById('kullaniciIsim').value.trim() || "Belirtilmedi";
+        raporuOlusturVeIndir(isim);
+    });
+
+    document.getElementById('isimsizIndirBtn').addEventListener('click', () => {
+        raporuOlusturVeIndir("Belirtilmedi");
+    });
+
+    function raporuOlusturVeIndir(kullaniciIsmi) {
+        document.getElementById('isimModal').style.display = 'none'; 
+        
+        const tarihDamgasi = new Date().toLocaleString('tr-TR');
+        const sure = document.getElementById('zamanGoster').innerText.replace('⏱️ ', '');
+        
+        let rapor = `ALMANCA C2 TEST RAPORU - WARUM SPIELEN KINDER SCHLAU MACHT\n`;
+        rapor += `==========================================================\n`;
+        rapor += `Tarih ve Saat : ${tarihDamgasi}\n`;
+        rapor += `Katılımcı     : ${kullaniciIsmi}\n`;
+        rapor += `Çözüm Süresi  : ${sure}\n`;
+        rapor += `==========================================================\n\n`;
+        
+        for (let num in soruVerileri) {
+            if (num == 0) continue;
+            const c = cevaplar[num];
+            rapor += `Soru ${num.toString().padStart(2, '0')}: ${c ? c.secilenMetin : 'Boş'} -> ${c && c.dogruMu ? '✅ Doğru' : '❌ Yanlış'}\n`;
+        }
+        
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([rapor], {type: "text/plain"}));
+        a.download = "Spielen_Kinder_Schlau_Sonuc.txt";
+        a.click();
+    }
+    // --- RAPOR İNDİRME SİSTEMİ BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: SIFIRLAMA (RESET) İŞLEMİ
+    // Ne işe yarar: Testteki her şeyi siler ve sayfayı ilk haline döndürür.
+    // --------------------------------------------------------------------------
+    document.getElementById('sifirlaBtn').addEventListener('click', () => {
+        cevaplar = {};
+        saniyeGeçti = 0;
+        timerDurdur();
+        timerBasladi = false;
+        verileriKaydet();
+        
+        popupKapat();
+        document.querySelectorAll('.bosluk').forEach(span => { 
+            if (parseInt(span.getAttribute('data-nummer')) !== 0) {
+                span.innerHTML = "_____"; 
+                span.className = "bosluk"; 
+            }
+        });
+        zamanlayiciGuncelle();
+        guncelleDurum();
+        document.getElementById('sonMesaj').innerHTML = "✅ Test sıfırlandı.";
+    });
+    // --- SIFIRLAMA İŞLEMİ BİTİŞİ ---
+
+    // --------------------------------------------------------------------------
+    // İŞLEV BAŞLANGICI: SAYFA İLK AÇILIŞ TETİKLEYİCİSİ
+    // Ne işe yarar: Kod yüklendiğinde eski kayıtları kontrol eder ve ekranı kurar.
+    // --------------------------------------------------------------------------
+    window.addEventListener('load', () => {
+        verileriYukle();
+        guncelleDurum();
+    });
+    // --- SAYFA İLK AÇILIŞ TETİKLEYİCİSİ BİTİŞİ ---
+
+    // ==========================================================================
+    // JAVASCRIPT BÖLÜMÜ BİTİŞİ
+    // ==========================================================================
+</script>
+</body>
+</html>
 
