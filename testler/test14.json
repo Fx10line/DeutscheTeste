@@ -15,7 +15,7 @@
     "35": { "secenekler": ["A) gabe", "B) gäb", "C) gäbe", "D) gebe"], "dogru": "C", "aciklama": "📘 Konjunktiv II: 'wenn es ... gäbe' → ... olsaydı (Gerçek dışı koşul)." },
     "36": { "secenekler": ["A) prognostizen", "B) prognositzieren", "C) prognüstizieren", "D) prognostizieren"], "dogru": "D", "aciklama": "📘 Doğru imla: 'prognostizieren' → Tahmin etmek, öngörmek." },
     "37": { "secenekler": ["A) Verbrauch", "B) Verlust", "C) Verschleiß", "D) Verzehr"], "dogru": "A", "aciklama": "📘 'steigender Verbrauch' → Artan tüketim / kullanım." },
-    "38": { "secenekler": ["A) angehenden", "B) kommenden", "C) späteren"], "dogru": "B", "aciklama": "📘 'in den kommenden 20 Jahren' → Önümüzdeki / gelecek 20 yıl içinde." },
+    "38": { "secenekler": ["A) angehenden", "B) kommenden", "C) späteren", "D) folgenden"], "dogru": "B", "aciklama": "📘 'in den kommenden 20 Jahren' → Önümüzdeki / gelecek 20 yıl içinde." },
     "39": { "secenekler": ["A) erst", "B) noch", "C) nicht", "D) schon"], "dogru": "B", "aciklama": "📘 'sich noch einmal verdoppeln' → Bir kez daha / yeniden ikiye katlanmak." },
     "40": { "secenekler": ["A) Ansicht", "B) Antwort", "C) Bemerkung", "D) Nennung"], "dogru": "A", "aciklama": "📘 'nach Ansicht der Forscher' → Araştırmacıların görüşüne / kanısına göre." },
     "41": { "secenekler": ["A) ebenfalls", "B) trotzdem", "C) stattdessen", "D) insbesondere"], "dogru": "C", "aciklama": "📘 'stattdessen' → Bunun yerine (Toplanmak yerine suya karışıyorlar)." },
