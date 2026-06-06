@@ -1,35 +1,35 @@
 [
   {
     "dosyaYolu": "testler/test1.json",
-    "baslik": "📝 Lernpsychologisch Ungunstig"
+    "baslik": "📝 Diktate lernpsychologisch ungünstig"
   },
   {
     "dosyaYolu": "testler/test2.json",
-    "baslik": "🧸 🧠 DAS GEHIRN EINES RAUCHERS IST WENIGER FLEXIBEL"
+    "baslik": "🧠 Das Gehirn eines Rauchers ist weniger flexibel"
   },
   {
     "dosyaYolu": "testler/test3.json",
-    "baslik": "🤝 DIE ROLLE EHRENAMTLICHEN ENGAGEMENTS"
+    "baslik": "🤝 Die Rolle ehrenamtlichen Engagements"
   },
   {
     "dosyaYolu": "testler/test4.json",
-    "baslik": "⚔️ IM SPANNUNGSFELD ZWISCHEN KONKURRENZ UND KOOPERATION"
+    "baslik": "⚔️ Im Spannungsfeld zwischen Konkurrenz und Kooperation"
   },
   {
     "dosyaYolu": "testler/test5.json",
-    "baslik": "🧬 DIE ORDNUNG DER DINGE"
+    "baslik": "🧬 Die Ordnung der Dinge"
   },
   {
     "dosyaYolu": "testler/test6.json",
-    "baslik": "⏰ SCHULE UND BIORHYTHMUS"
+    "baslik": "⏰ Schule und Biorhythmus"
   },
   {
     "dosyaYolu": "testler/test7.json",
-    "baslik": "💰 WIE DAS GELD IN DIE WELT KAM"
+    "baslik": "💰 Wie das Geld in die Welt kam"
   },
   {
     "dosyaYolu": "testler/test8.json",
-    "baslik": "🧸 WARUM SPIELEN KINDER SCHLAU MACHT"
+    "baslik": "🧸 Warum Spielen Kinder schlau macht"
   },
   {
     "dosyaYolu": "testler/test9.json",
@@ -53,10 +53,10 @@
   },
   {
     "dosyaYolu": "testler/test14.json",
-    "baslik": "C1_C2_Plastik_im_Meer_v1"
+    "baslik": "🌊 In 35 Jahren mehr Plastik als Fische im Meer"
   },
   {
-    "dosyaYolu": "testler/test14.json",
-    "baslik": "son"
+    "dosyaYolu": "testler/test15.json",
+    "baslik": "🏢 Unterstützung für kleine und mittlere Unternehmen"
   }
 ]
