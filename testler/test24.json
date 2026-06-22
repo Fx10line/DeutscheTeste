@@ -7,7 +7,7 @@
     "27": { "secenekler": ["A) unter die Augen kommen", "B) unter die Leute bringen", "C) unter die Lupe nehmen", "D) unters Volk mischen"], "dogru": "B", "aciklama": "Werbung unter die Leute bringen (reklamı halka/insanlara ulaştırmak)." },
     "28": { "secenekler": ["A) abgehängt", "B) ausgehängt", "C) verhängt", "D) zugehängt"], "dogru": "B", "aciklama": "Handzettel werden ausgehängt (el ilanları asılır)." },
     "29": { "secenekler": ["A) anboten", "B) ausboten", "C) geboten", "D) verboten"], "dogru": "A", "aciklama": "Waren anbieten (malları sunmak/teklif etmek)." },
-    "30": { "secenekler": ["A) als", "B) als dass", "C) dass", "D) wie"], "dogru": "A", "aciklama": "insofern ..., als... (şu bakımdan ki ... / ... olması bakımından)." },
+    "30": { "secenekler": ["A) als", "B) als dass", "C) dass", "D) wie"], "dogru": "C", "aciklama": "insofern ..., dass... (şu bakımdan ki ... - modern/alternatif kullanım)." },
     "31": { "secenekler": ["A) Erhöhung", "B) Erweiterung", "C) Verbreitung", "D) Vergrößerung"], "dogru": "C", "aciklama": "notwendig für deren Verbreitung (onların yayılması için gerekli)." },
     "32": { "secenekler": ["A) durch", "B) gegen", "C) mit", "D) wegen"], "dogru": "B", "aciklama": "gegen Bezahlung (ödeme karşılığında)." },
     "33": { "secenekler": ["A) erschuf", "B) schaffte", "C) schuf", "D) verschaffte"], "dogru": "D", "aciklama": "einen gewaltigen Schub verschaffen (büyük bir ivme/itici güç sağlamak)." },
