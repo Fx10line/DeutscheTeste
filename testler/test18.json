@@ -16,7 +16,7 @@
     "35": { "secenekler": ["A) erreichen", "B) erlangten", "C) erhielten", "D) ergaben"], "dogru": "D", "aciklama": "Tests ergaben (testler ortaya koydu/gösterdi)." },
     "36": { "secenekler": ["A) fordern", "B) drängen", "C) bitten", "D) bestehen"], "dogru": "A", "aciklama": "Unterrichtsbeginn fordern (ders başlangıç saatini talep etmek)." },
     "37": { "secenekler": ["A) über", "B) ein", "C) auf", "D) an"], "dogru": "C", "aciklama": "trifft auf Zustimmung (onay/kabul görmek)." },
-    "38": { "secenekler": ["A) gaben", "B) leiten", "C) führten", "D) bieten"], "dogru": "A", "aciklama": "gaben an (angeben: belirtmek, beyan etmek)." },
+    "38": { "secenekler": ["A) gaben", "B) leiten", "C) führen", "D) bieten"], "dogru": "C", "aciklama": "gaben an (angeben: belirtmek, beyan etmek)." },
     "39": { "secenekler": ["A) ohnehin", "B) ohnegleichen", "C) ohneeinander", "D) ohne"], "dogru": "A", "aciklama": "ohnehin relativ früh (zaten nispeten erken)." },
     "40": { "secenekler": ["A) schon", "B) nur", "C) längst", "D) bloß"], "dogru": "A", "aciklama": "schon um sieben Uhr (saat yedide bile/çoktan)." },
     "41": { "secenekler": ["A) diesen", "B) dies", "C) dessen", "D) des"], "dogru": "D", "aciklama": "Möglichkeit des offenen Anfangs (Genitiv: açık başlangıç imkanı)." },
