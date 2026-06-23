@@ -13,7 +13,7 @@
     "32": { "secenekler": ["A) kommen", "B) nehmen", "C) sehen", "D) ziehen"], "dogru": "D", "aciklama": "📘 'Konkurrenz in Betracht nehmen' → Rekabeti hesaba katmak, dikkate almak." },
     "33": { "secenekler": ["A) bestimmt", "B) missgestimmt", "C) verstimmt", "D) zugestimmt"], "dogru": "A", "aciklama": "📘 'von Konkurrenz bestimmt' → Rekabet tarafından belirlenen/yönlendirilen." },
     "34": { "secenekler": ["A) dem Faktor", "B) den Faktor", "C) der Faktor", "D) des Faktor"], "dogru": "C", "aciklama": "📘 'erweise sich der Faktor Kooperation' → İşbirliği faktörü olduğu ortaya çıkıyor (Nominativ)." },
-    "35": { "secenekler": ["A) gehabt", "B) habe", "C) haben", "D) hatten"], "dogru": "B", "aciklama": "📘 Dolaylı anlatım (Konjunktiv I): 'habe Kooperation ...'." },
+    "35": { "secenekler": ["A) gehabt", "B) hebe", "C) haben", "D) hatten"], "dogru": "B", "aciklama": "📘 Dolaylı anlatım (Konjunktiv I): 'habe Kooperation ...'." },
     "36": { "secenekler": ["A) erbracht", "B) erhalten", "C) erreicht", "D) erwirkt"], "dogru": "C", "aciklama": "📘 'einen Grad erreichen' → Bir dereceye/seviyeye ulaşmak." },
     "37": { "secenekler": ["A) beidseitig", "B) einseitig", "C) gegenseitig", "D) zweiseitig"], "dogru": "C", "aciklama": "📘 'unterstützen sich gegenseitig' → Karşılıklı olarak birbirini desteklemek." },
     "38": { "secenekler": ["A) bestanden", "B) bestehe", "C) bestehen", "D) bestehst"], "dogru": "B", "aciklama": "📘 Genel zaman vurgusu: 'bestehen eine Wechselwirkung' → Bir etkileşim mevcuttur." },
