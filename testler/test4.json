@@ -21,7 +21,7 @@
     "40": { "secenekler": ["A) Teritorium", "B) Terittorium", "C) Territorium", "D) Territtorium"], "dogru": "C", "aciklama": "📘 'Territorium' → Bölge, yaşam alanı (Doğru yazım)." },
     "41": { "secenekler": ["A) gliedert", "B) teilt", "C) unterscheidet", "D) wählt"], "dogru": "C", "aciklama": "📘 'unterscheiden zwischen' → ... arasında ayrım yapmak." },
     "42": { "secenekler": ["A) schadet", "B) schade", "C) schaden", "D) schadend"], "dogru": "B", "aciklama": "📘 'Konkurrenz ... schadet immer' → Rekabet her zaman zarar verir." },
-    "43": { "secenekler": ["A) erkenne", "B) sehe", "C) verspreche", "D) ziehe / zieht"], "dogru": "D", "aciklama": "📘 'Nutzen ziehen aus' → ...dan yarar/çıkar sağlamak." },
+    "43": { "secenekler": ["A) erkenne", "B) sehe", "C) verspreche", "D) ziehe"], "dogru": "D", "aciklama": "📘 'Nutzen ziehen aus' → ...dan yarar/çıkar sağlamak." },
     "44": { "secenekler": ["A) zerfallen", "B) zergangen", "C) zermürbend", "D) zerstörerische"], "dogru": "D", "aciklama": "📘 Sıfat tamlaması: 'eine zerstörerische Konkurrenz' → Yıkıcı bir rekabet." },
     "45": { "secenekler": ["A) Ausfälle", "B) Ausmaße", "C) Ausübungen", "D) Auswirkungen"], "dogru": "D", "aciklama": "📘 'negative Auswirkungen' → Olumsuz etkiler/sonuçlar." },
     "46": { "secenekler": ["A) Durchbruch", "B) Errungenschaft", "C) Erwerb", "D) Fortschritt"], "dogru": "B", "aciklama": "📘 'kulturelle Errungenschaft' → Kültürel kazanım/başarı." }
